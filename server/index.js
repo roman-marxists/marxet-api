@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 const { pgsql, mongodb } = require('../database')
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 let app = express()
 
