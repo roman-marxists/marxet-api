@@ -14,6 +14,21 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+app.get("/api/fake", async (req, res) => {
+  const user = await models.User.find({ username: "hellothere" });
+
+  // const user = await models.User.create({
+  //   username: "hellothere",
+  // });
+  // const item = await models.Item.create({
+  //   name: "this is an item",
+  // });
+  // user.watchList.push(item._id);
+  // await user.save();
+  // console.log(user);
+  res.json(user);
+});
+
 connectDb()
   .then(() => {
     app.listen(port, () => {
