@@ -5,7 +5,7 @@ const { User, Item } = require('../models').User;
 // GET ALL
 router.get('/', async (req, res) => {
   const users = await User.find({});
-  return res.json(users);
+  return res.status(200).json(users);
 });
 
 // GET by id
@@ -15,11 +15,11 @@ router.get('/:id', async (req, res) => {
   return res.json(user);
 });
 
-// POST
+// POST, won't work until we get firebase/auth0 user id's
 router.post('/', async (req, res) => {
-  const { username } = req.body;
-  const user = await User.create({ username });
-  return res.json(user);
+  const { id, username } = req.body;
+  const user = await User.create({ _id: id, username });
+  return res.status(201).json(user);
 });
 
 router.put('/:id', async (req, res) => {
@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  await User.findByIdAndDelete(id);
+  await User.findByIdAndDelete(id); // can be null but not necessary
   return res.send(`user ${id} deleted`);
 });
 

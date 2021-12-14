@@ -15,12 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/api/products', productRouter);
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 
 connectDb()
   .then(() => {
     app.listen(PORT, (err) => {
-      err ? err : console.log('Listening on port %d...', PORT);
+      err ?? console.log('Listening on port %d...', PORT);
     });
   })
   .catch((err) => console.log(err));
