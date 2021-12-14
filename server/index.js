@@ -2,9 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
-
+const { pgsql, mongodb } = require('../database');
 const { connectDb } = require('../database/mongodb');
-const routes = require('../routes');
+const { userRouter, productRouter } = require('../routes');
 
 const PORT = process.env.PORT || 3030;
 const app = express();
@@ -14,12 +14,14 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use('/api/products', routes.product);
+app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
 
 connectDb()
   .then(() => {
     app.listen(PORT, (err) => {
-      err ? err : console.log('Listening on port %d...', PORT);
+      err ?? console.log('Listening on port %d...', PORT);
     });
   })
   .catch((err) => console.log(err));
+
