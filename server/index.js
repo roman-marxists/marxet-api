@@ -3,8 +3,9 @@ const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const { pgsql, mongodb } = require('../database');
-
 const { connectDb, models } = require('../database/mongodb');
+const { user } = require('../routes')
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -36,3 +37,5 @@ connectDb()
     });
   })
   .catch((err) => console.log(err));
+
+app.use('/api/user', user)
