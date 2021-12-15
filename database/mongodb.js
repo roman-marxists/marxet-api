@@ -6,4 +6,4 @@ const connectDb = () => {
 
 const db = mongoose.connection;
 
-module.exports = { db, connectDb };
+module.exports = { db, mongoose, connectDb };

@@ -15,12 +15,12 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, category, zipcode } = req.body;
   console.log(
     "🚀 ~ file: product.js ~ line 19 ~ router.post ~ req.body",
     req.body
   );
-  const product = await Product.create({ name, description });
+  const product = await Product.create({ name, description, category, zipcode });
   return res.json(product);
 });
 

@@ -1,11 +1,11 @@
-
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const { pgsql, mongodb } = require('../database');
-const { db, connectDb } = require('../database/mongodb');
+const { connectDb } = require('../database/mongodb');
 const { userRouter, productRouter, categoryRouter } = require('../routes');
+const transactionTest = require('../controllers/TransactionController');
 
 const PORT = process.env.PORT || 3030;
 const app = express();
