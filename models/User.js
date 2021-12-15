@@ -11,7 +11,7 @@ const userSchema = new Schema(
     },
     zipcode: Number,
     listings: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-    transactions: [{ type: Schema.Types.ObjectId, ref: "Transaction"}],
+    // transactions: [{ type: Schema.Types.ObjectId, ref: "Transaction"}],
     wishlist: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     watchList: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
