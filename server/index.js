@@ -2,37 +2,25 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
-const { pgsql, mongodb } = require("../database");
 
-const { connectDb, models } = require("../database/mongodb");
+const { connectDb } = require("../database/mongodb");
+const routes = require("../routes");
 
-const PORT = process.env.PORT || 3001;
-
-let app = express();
+const PORT = process.env.PORT || 3030;
+const app = express();
 
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded());
 
-app.get("/api/fake", async (req, res) => {
-  const user = await models.User.find({ username: "hellothere" });
-
-  // const user = await models.User.create({
-  //   username: "hellothere",
-  // });
-  // const item = await models.Item.create({
-  //   name: "this is an item",
-  // });
-  // user.watchList.push(item._id);
-  // await user.save();
-  // console.log(user);
-  res.json(user);
-});
+app.use("/api/products", routes.product);
+app.use("/api/category", routes.category);
 
 connectDb()
   .then(() => {
-    app.listen(PORT, () => {
-      console.log("Listening on port %d...", PORT);
+    app.listen(PORT, (err) => {
+      err ? err : console.log("Listening on port %d...", PORT);
     });
   })
   .catch((err) => console.log(err));
