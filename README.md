@@ -4,7 +4,7 @@ Backend for marxet bartering app
 
 Setup mongo
 
-1. Create file `.env` in root directory
+1. Create file `.env` in root directory. You can copy and rename from the `example.env` file
 2. Add the following variable to the`.env` file
    `MONGO_URL=mongodb://localhost:27017/<name of your db>`
 
