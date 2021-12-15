@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const { db } = require('../database/mongodb');
 const { User } = require('../models');
 
 const createTransaction = async (buyer, seller, productId) => {
@@ -9,5 +9,5 @@ const createTransaction = async (buyer, seller, productId) => {
     return;
   }
 
-  // const session =
+  const session = await db.startSession();
 }
