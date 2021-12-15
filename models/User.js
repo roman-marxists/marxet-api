@@ -10,6 +10,8 @@ const userSchema = new Schema(
       require: true,
     },
     zipcode: Number,
+    listings: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+    // transactions: [{ type: Schema.Types.ObjectId, ref: "Transaction"}],
     wishlist: [{ type: Schema.Types.ObjectId, ref: "Product" }],
     watchList: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   },
