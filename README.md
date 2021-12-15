@@ -41,9 +41,9 @@ Parameter | Type | Description
 -------|------|------------
 username | String | Required ID of the product to post the review for
 zipcode | Number | Integer (1-5) indicating the review rating
-listings | Array | All listings the user created
-wishlist | Array | All listings the user has wishlisted
-watchlist | Array | All listings the user has watched
+listings | [Product] | All listings the user created
+wishlist | [Product] | All listings the user has wishlisted
+watchlist | [Product] | All listings the user has watched
 
 RESPONSE
 > Response: Status 201 CREATED
@@ -67,6 +67,10 @@ id | integer | Required ID of the user to delete
 
 RESPONSE
 > Response: Status 204 NO CONTENT
+
+
+
+
 
 ### GET /api/products
 Retrieves all products.
@@ -97,7 +101,7 @@ Parameter | Type | Description
 -------|------|------------
 name | String | Required name of the product to post.
 description | String | Required description of the product
-category | String | Required category(s) of the product
+categories | [String] | Required at least 1 category for the product
 zipcode | Number | Integer indicating the zipcode
 
 RESPONSE
@@ -122,3 +126,42 @@ id | integer | Required ID of the product to delete
 
 RESPONSE
 > Response: Status 204 NO CONTENT
+
+
+
+
+
+### GET /api/transactions
+Retrieves all transactions.
+
+RESPONSE
+> Response: Status 200 OK
+```json
+"insert json results here"
+```
+
+### GET /api/transactions/:id
+Retrieves transaction with a given id.
+
+Parameter | Type | Description
+-------|------|------------
+id | integer | Selects the transaction to return.
+
+RESPONSE
+> Response: Status 200 OK
+```json
+"insert json results here"
+```
+
+### POST /api/transactions
+Adds a transaction to the database of transactions.
+
+Parameter | Type | Description
+-------|------|------------
+buyer | User | Required buyer of the product
+seller | User | Required seller of the product
+product | Product | Required product being bartered
+zipcode | Number | Integer indicating the zipcode of the sale
+
+RESPONSE
+> Response: Status 201 CREATED
