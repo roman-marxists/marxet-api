@@ -21,7 +21,7 @@ app.use('/api/categories', categoryRouter);
 
 connectDb()
   .then((mongoose) => {
-    console.log('is db sync equal to db async?', mongoose.connection === db)
+    // console.log('is db sync equal to db async?', mongoose.connection === db)
     app.listen(PORT, (err) => {
       err ? err : console.log("Listening on port %d...", PORT);
     });
