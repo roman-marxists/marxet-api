@@ -1,7 +1,10 @@
+
 const product = require("./product");
 const category = require("./category");
+const user = require('./user');
 
 module.exports = {
-  product,
-  category,
+  productRouter: product,
+  userRouter: user,
+  categoryRouter: category
 };
