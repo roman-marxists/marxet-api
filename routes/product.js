@@ -4,23 +4,34 @@ const { Product } = require("../models");
 // const { firebase } = require('../database');
 
 router.get("/", async (req, res) => {
-  const products = await Product.find({});
+  const products = await Product.find({}).populate("createdBy");
+  console.log(
+    "🚀 ~ file: product.js ~ line 8 ~ router.get ~ products",
+    products
+  );
   return res.json(products);
 });
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate("createdBy");
   return res.json(product);
 });
 
 router.post("/", async (req, res) => {
-  const { name, description, category, zipcode } = req.body;
+  const { name, description, category, zipCode, image, createdBy } = req.body;
   console.log(
     "🚀 ~ file: product.js ~ line 19 ~ router.post ~ req.body",
     req.body
   );
-  const product = await Product.create({ name, description, category, zipcode });
+  const product = await Product.create({
+    name,
+    description,
+    category,
+    zipCode,
+    createdBy,
+    photos: [image],
+  });
   return res.json(product);
 });
 
