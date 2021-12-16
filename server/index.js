@@ -1,11 +1,11 @@
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-require('dotenv').config();
-const { pgsql, mongodb } = require('../database');
-const { connectDb } = require('../database/mongodb');
-const { userRouter, productRouter, categoryRouter } = require('../routes');
-const transactionTest = require('../controllers/TransactionController');
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+require("dotenv").config();
+const { pgsql, mongodb } = require("../database");
+const { connectDb } = require("../database/mongodb");
+const { userRouter, productRouter, categoryRouter } = require("../routes");
+const transactionTest = require("../controllers/TransactionController");
 
 const PORT = process.env.PORT || 3030;
 const app = express();
@@ -15,13 +15,12 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/products', productRouter);
-app.use('/api/users', userRouter);
-app.use('/api/categories', categoryRouter);
+app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
+app.use("/api/categories", categoryRouter);
 
 connectDb()
-  .then((mongoose) => {
-    // console.log('is db sync equal to db async?', mongoose.connection === db)
+  .then(() => {
     app.listen(PORT, (err) => {
       err ? err : console.log("Listening on port %d...", PORT);
     });
