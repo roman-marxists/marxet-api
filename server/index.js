@@ -3,8 +3,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 const { pgsql, mongodb } = require("../database");
-const { db, connectDb } = require("../database/mongodb");
+const { connectDb } = require("../database/mongodb");
 const { userRouter, productRouter, categoryRouter } = require("../routes");
+const transactionTest = require("../controllers/TransactionController");
 
 const PORT = process.env.PORT || 3030;
 const app = express();
@@ -20,7 +21,7 @@ app.use("/api/categories", categoryRouter);
 
 connectDb()
   .then((mongoose) => {
-    console.log("is db sync equal to db async?", mongoose.connection === db);
+    // console.log('is db sync equal to db async?', mongoose.connection === db)
     app.listen(PORT, (err) => {
       err ? err : console.log("Listening on port %d...", PORT);
     });
