@@ -24,6 +24,20 @@ router.post("/", async (req, res) => {
   return res.json(product);
 });
 
+// const { data } = await axiosClient.post("/search");
+
+router.get("/search/:searchText", async (req, res) => {
+  try {
+    const { searchText } = req.params;
+    const searchForProducts = await Product.find({
+      name: { $regex: searchText, $options: "i" },
+    });
+    return res.json(searchForProducts);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
