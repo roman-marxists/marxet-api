@@ -9,6 +9,7 @@ const productSchema = new Schema(
     zipCode: Number,
     createdBy: { type: String, ref: "User" },
     photos: [String],
+    category: String,
   },
   { timestamps: true }
 );

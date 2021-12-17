@@ -5,10 +5,6 @@ const { Product } = require("../models");
 
 router.get("/", async (req, res) => {
   const products = await Product.find({}).populate("createdBy");
-  console.log(
-    "🚀 ~ file: product.js ~ line 8 ~ router.get ~ products",
-    products
-  );
   return res.json(products);
 });
 
@@ -33,6 +29,20 @@ router.post("/", async (req, res) => {
     photos: [image],
   });
   return res.json(product);
+});
+
+// const { data } = await axiosClient.post("/search");
+
+router.get("/search/:searchText", async (req, res) => {
+  try {
+    const { searchText } = req.params;
+    const searchForProducts = await Product.find({
+      name: { $regex: searchText, $options: "i" },
+    });
+    return res.json(searchForProducts);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.put("/:id", async (req, res) => {
