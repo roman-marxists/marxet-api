@@ -30,7 +30,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Delete from wishlist
-router.delete("/favorites/:listing_id/:user_id", async (req, res) => {
+router.delete("/wishlist/:listing_id/:user_id", async (req, res) => {
   try {
     const { listing_id, user_id } = req.params;
     const user = await User.findById(user_id);
@@ -43,7 +43,7 @@ router.delete("/favorites/:listing_id/:user_id", async (req, res) => {
 });
 
 // add to wishList
-router.post("/wishList/", async (req, res) => {
+router.post("/wishlist/", async (req, res) => {
   try {
     const { listing_id, user_id } = req.body;
     const user = await User.findById(user_id);
