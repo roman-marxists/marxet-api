@@ -6,9 +6,10 @@ const productSchema = new Schema(
   {
     name: String,
     description: String,
-    categories: [String],
-    zipcode: Number,
-    createdBy: { type: Schema.Types.ObjectId, ref: "User" },
+    zipCode: Number,
+    createdBy: { type: String, ref: "User" },
+    photos: [String],
+    category: String,
   },
   { timestamps: true }
 );

@@ -20,8 +20,7 @@ app.use("/api/users", userRouter);
 app.use("/api/categories", categoryRouter);
 
 connectDb()
-  .then((mongoose) => {
-    // console.log('is db sync equal to db async?', mongoose.connection === db)
+  .then(() => {
     app.listen(PORT, (err) => {
       err ? err : console.log("Listening on port %d...", PORT);
     });
