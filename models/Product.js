@@ -7,6 +7,10 @@ const productSchema = new Schema(
     name: String,
     description: String,
     zipCode: Number,
+    watchCount: {
+      type: Number,
+      default: 0
+    },
     createdBy: { type: String, ref: "User" },
     photos: [String],
   },

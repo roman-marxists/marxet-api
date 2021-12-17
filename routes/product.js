@@ -35,12 +35,25 @@ router.post("/", async (req, res) => {
   return res.json(product);
 });
 
+router.get("/search/:searchText", async (req, res) => {
+  try {
+    const { searchText } = req.params;
+    const searchForProducts = await Product.find({
+      name: { $regex: searchText, $options: "i" },
+    });
+    return res.status(200).json(searchForProducts);
+  } catch (err) {
+    console.log(err);
+    return res.status(404).send();
+  }
+});
+
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, description } = req.body;
+  const { name, description, zipcode, watchCount, photos } = req.body;
   const product = await Product.findByIdAndUpdate(
     id,
-    { name, description },
+    { name, description, zipcode, watchCount, photos },
     {
       new: true,
     }

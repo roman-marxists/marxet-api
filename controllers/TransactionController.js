@@ -86,14 +86,14 @@ const createTransaction = async (buyerId, sellerId, productId) => {
 };
 
 // Tests
-const buyer1 = 1;
-const seller1 = 2;
-const saleProduct = '61b969652af66bf11d6d550b';
+// const buyer1 = 1;
+// const seller1 = 2;
+// const saleProduct = '61b969652af66bf11d6d550b';
 
-createTransaction(buyer1, seller1, saleProduct)
-  .then(() => {
-    console.log('Completed succesfully');
-  })
-  .catch(err => {
-    console.log('Sorry, the transaction was not completed: ' + err);
-  });
+// createTransaction(buyer1, seller1, saleProduct)
+//   .then(() => {
+//     console.log('Completed succesfully');
+//   })
+//   .catch(err => {
+//     console.log('Sorry, the transaction was not completed: ' + err);
+//   });

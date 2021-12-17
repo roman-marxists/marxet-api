@@ -26,15 +26,16 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { username, wishlist, watchlist } = req.body;
+  console.log(req.body);
+  const { username, email, zipcode, bio, listings, wishlist, watchList } = req.body;
   const user = await User.findByIdAndUpdate(
     id,
-    { username, wishlist, watchlist },
+    {  username, email, zipcode, bio, listings, wishlist, watchList },
     {
       new: true,
     }
   );
-  return res.json(user);
+  return res.status(201).json(user);
 });
 
 router.delete("/:id", async (req, res) => {
