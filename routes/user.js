@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   const { id, email, username } = req.body;
   const user = await User.create({ _id: id, email, username });
-  console.log("🚀 ~ file: user.js ~ line 22 ~ router.post ~ user", user);
+  console.log("🚀 ~ file: user.js ~ line 23 ~ router.post ~ user", user);
   return res.status(201).json(user);
 });
 
